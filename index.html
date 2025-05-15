@@ -6,17 +6,32 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>LaganLoom - Bridal Makeup Booking</title>
     <link rel="stylesheet" href="style.css">
+    <script>
+        function sendWhatsAppMessage(event) {
+            event.preventDefault();
+            const name = document.getElementById("name").value;
+            const email = document.getElementById("email").value;
+            const phone = document.getElementById("phone").value;
+            const date = document.getElementById("date").value;
+            const message = document.getElementById("message").value;
+
+            const fullMessage = `New Booking!%0AName: ${name}%0AEmail: ${email}%0APhone: ${phone}%0ADate: ${date}%0AMessage: ${message}`;
+            const whatsappURL = `https://wa.me/918303019208?text=${fullMessage}`;
+            window.open(whatsappURL, '_blank');
+        }
+    </script>
 </head>
 <body>
     <div class="container">
         <img src="logo.png" alt="LaganLoom Logo" class="logo">
         <h1>Your Day, Your Look, Your LaganLoom</h1>
-        <form action="mailto:your-email@example.com" method="POST" enctype="text/plain" class="booking-form">
-            <input type="text" name="name" placeholder="Your Name" required>
-            <input type="email" name="email" placeholder="Your Email" required>
-            <input type="date" name="date" required>
-            <textarea name="message" placeholder="Any specific request?" rows="4"></textarea>
-            <button type="submit">Book Now</button>
+        <form onsubmit="sendWhatsAppMessage(event)" class="booking-form">
+            <input type="text" id="name" placeholder="Your Name" required>
+            <input type="email" id="email" placeholder="Your Email" required>
+            <input type="tel" id="phone" placeholder="Your Contact Number" required>
+            <input type="date" id="date" required>
+            <textarea id="message" placeholder="Any specific request?" rows="4"></textarea>
+            <button type="submit">Book Now via WhatsApp</button>
         </form>
     </div>
 </body>
